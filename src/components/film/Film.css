@@ -1,16 +1,16 @@
 .film {
-    /* width: 451px; */
     flex-basis: 451px;
     height: 279px;
     margin-top: 21px;
-    margin-left: 32px;
+    margin-right: 16px;
+    margin-left: 16px;
     display: flex;
     box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
     justify-content: center;
+    min-width: 451px;
 }
 
 .film--text {
-    /* flex-basis: 298px; */
     width: 238px;
     padding-left: 20px;
     text-align: left;
@@ -20,27 +20,19 @@
 .film--picture {
     width: 183px !important;
     height: 281px !important;
-    /* z-index: 10; */
     position: absolute;
     left: 0;
 }
 .film--img {
-    /* width: 183px !important; */
-    /* height: 281px !important; */
-    /* z-index: 0; */
-    /* position: relative */
-    /* object-fit:cover; */
     width: 100%;
     position: absolute;
     left: 0;
 }
 .placeholder{
-    /* position: absolute; */
     width: 100%;
     height: 100%;
     width: 183px !important;
     height: 281px !important;
-    /* z-index: 40; */
 }
 
 .film--title {
@@ -75,7 +67,6 @@
 }
 
 .ant-rate{
-    position: relative;
     position: absolute;
     bottom: 0;
     margin-bottom: 10px;

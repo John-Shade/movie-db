@@ -4,7 +4,6 @@ async function getResource(query, pageState, choiseState, userIdState) {
   const page = pageState
   const options = {
     method: 'GET',
-    // method: 'GT',
     headers: {
       accept: 'application/json',
     },
@@ -16,8 +15,8 @@ async function getResource(query, pageState, choiseState, userIdState) {
 
   const resp = await fetch(url, options)
   const data = await resp.json()
-  console.log('data')
-  console.log(data)
+  // console.log('data')
+  // console.log(data)
   return data
 }
 

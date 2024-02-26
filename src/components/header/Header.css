@@ -1,4 +1,14 @@
 .input-text {
-    width: 934px;
-    padding: 0 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.ant-input{
+    width: 938px;
+}
+
+@media (width <= 982px) {
+    .ant-input{
+        width: 451px;
+    }
 }

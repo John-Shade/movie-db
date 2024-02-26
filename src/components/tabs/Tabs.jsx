@@ -1,11 +1,11 @@
 import { Tabs } from 'antd'
 import { memo } from 'react'
 
-let count = 0
+// let count = 0
 function TabsList({ choiseState, setChoiseState, setPageState }) {
-  count += 1
-  console.log(`COUNT -- ${count}`)
-  console.log('TabsList')
+  // count += 1
+  // console.log(`COUNT -- ${count}`)
+  // console.log('TabsList')
   function onClick(e) {
     setPageState(1)
     console.log(`e -- ${e}`)

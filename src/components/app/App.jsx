@@ -27,6 +27,8 @@ function App() {
   const [userIdState, setUserIdState] = useState()
   const [genresIdsState, setGenresIdsState] = useState()
 
+  const [rateState, setRateState] = useState({})
+
   function onError(err) {
     setMistake(true)
     setLoading(false)
@@ -107,39 +109,30 @@ function App() {
     userIdState,
     addRating,
     genresIdsState,
+    rateState,
+    setRateState,
   }
   if (!loading && !mistake) {
     return (
       <>
         {header}
         <ChoiseContext.Provider value={value}>
-          <AppView
-            data={dataState}
-            setPageState={setPageState}
-            totalResultsState={totalResultsState}
-            pageState={pageState}
-          />
+          <div className="App">
+            <FilmList data={dataState} nothingState={1} />
+            <Pagination
+              defaultCurrent={1}
+              total={totalResultsState}
+              defaultPageSize={20}
+              showSizeChanger={false}
+              onChange={(page) => setPageState(page)}
+              current={pageState}
+              style={{ marginTop: '40px' }}
+            />
+          </div>
         </ChoiseContext.Provider>
       </>
     )
   }
-}
-
-function AppView({ data, setPageState, totalResultsState, pageState }) {
-  return (
-    <div className="App">
-      <FilmList data={data} nothingState={1} />
-      <Pagination
-        defaultCurrent={1}
-        total={totalResultsState}
-        defaultPageSize={20}
-        showSizeChanger={false}
-        onChange={(page) => setPageState(page)}
-        current={pageState}
-        style={{ marginTop: '40px' }}
-      />
-    </div>
-  )
 }
 
 export default App

@@ -1,6 +1,7 @@
 import './Film.css'
 import { Col, Skeleton, Rate } from 'antd'
 import { useState, useContext } from 'react'
+// import { useState, useContext, useEffect } from 'react'
 
 import ChoiseContext from '../choise-context'
 
@@ -17,6 +18,7 @@ export default function Film({ data }) {
     genre_ids: genreIds,
   } = data
 
+  const editedRating = Object.keys(context.rateState).includes(id.toString()) ? context.rateState[id] : rating
   const url = `https://image.tmdb.org/t/p/w500${poster}`
 
   const [afterLoadingImg, setAfterLoadingImg] = useState(false)
@@ -52,9 +54,17 @@ export default function Film({ data }) {
   })
 
   return (
-    <Col span={12} className="film">
+    <Col span={12} className="film" offset={0}>
       <div className="film--picture">
-        <ImgView poster={poster} url={url} afterLoadingImg={afterLoadingImg} setAfterLoadingImg={setAfterLoadingImg} />
+        <img
+          src={poster ? url : 'https://topnaroda.com/uploads/poster_none.png'}
+          alt=""
+          className="film--img"
+          style={afterLoadingImg ? { width: '100%' } : { width: '0%' }}
+          onLoad={() => {
+            setAfterLoadingImg(true)
+          }}
+        />
         {!afterLoadingImg && <Skeleton.Image active className="film--img placeholder" />}
       </div>
       <div className="film--text">
@@ -66,24 +76,13 @@ export default function Film({ data }) {
           allowHalf
           defaultValue={0}
           count={10}
-          onChange={(value) => context.addRating(context.userIdState, id, value)}
-          value={rating}
+          onChange={(value) => {
+            context.setRateState({ ...context.rateState, [id]: value })
+            context.addRating(context.userIdState, id, value)
+          }}
+          value={Number(editedRating)}
         />
       </div>
     </Col>
-  )
-}
-
-function ImgView({ poster, url, afterLoadingImg, setAfterLoadingImg }) {
-  return (
-    <img
-      src={poster ? url : 'https://topnaroda.com/uploads/poster_none.png'}
-      alt=""
-      className="film--img"
-      style={afterLoadingImg ? { width: '100%' } : { width: '0%' }}
-      onLoad={() => {
-        setAfterLoadingImg(true)
-      }}
-    />
   )
 }
